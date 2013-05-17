@@ -1,0 +1,22 @@
+box: "wercker/ruby@0.0"
+build:
+    steps:
+          - script:
+              name: add ruby2.0 support
+              code:
+                  export RUBYVERSION=2.0.0-p0
+                  cd $HOME
+                  mkdir rubyinstall2
+                  cd rubyinstall2
+                  wget ftp://ftp.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p0.tar.gz
+                  tar xzvf ruby-$RUBYVERSION.tar.gz
+                  cd ruby-$RUBYVERSION
+                  ./configure --with-readline-dir=/usr/include/readline --with-openssl-dir=/usr/include/openssl
+                  make
+                  make test
+                  sudo make install
+                  cd $HOME
+                  rm -fr rubyinstall2
+                  echo "gem: --no-rdoc --no-ri" >> $HOME/.gemrc
+                  sudo gem install bundler -v "1.3"
+          - "bundle-install"
