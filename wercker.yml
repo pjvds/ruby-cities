@@ -2,7 +2,7 @@ box: "wercker/ruby@0.0"
 build:
     steps:
           - script:
-                 export RUBYVERSION=2.0.0-p0
+                  export RUBYVERSION=2.0.0-p0
                   cd $HOME
                   mkdir rubyinstall2
                   cd rubyinstall2
