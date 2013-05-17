@@ -9,4 +9,44 @@ build:
               name: "go home"
               code:
                   cd $HOME
+          - script:
+              name: "mk rubyinstall"
+              code:
+                  mkdir rubyinstall2
+          - script:
+              name: "cd rubyinstall"
+              code:
+                  cd rubyinstall2
+          - script:
+              name: "wget ruby"
+              code:
+                  wget ftp://ftp.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p0.tar.gz
+          - script:
+              name: "tar"
+              code:
+                  tar xzvf ruby-$RUBYVERSION.tar.gz
+          - script:
+              name: "cd ruby version"
+              code:
+                  cd ruby-$RUBYVERSION
+          - script:
+              name: "configure"
+              code:
+                  ./configure --with-readline-dir=/usr/include/readline --with-openssl-dir=/usr/include/openssl
+          - script:
+              name: "make"
+              code:
+                  make
+          - script:
+              name: "make test"
+              code:
+                  make test
+          - script:
+              name: "make install"
+              code:
+                  sudo make install
+          - script:
+              name: "go WERCKER_ROOT"
+              code:
+                  cd $WERCKER_ROOT
           - "bundle-install"
