@@ -16,7 +16,7 @@ build:
                   make test
                   sudo make install
                   cd $HOME
-                  rm -fr rubyinstall2
+                  rm -rf rubyinstall2
                   echo "gem: --no-rdoc --no-ri" >> $HOME/.gemrc
                   sudo gem install bundler -v "1.3"
-          - "bundle-install"
+          - bundle install
