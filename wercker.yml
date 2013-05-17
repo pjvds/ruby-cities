@@ -38,10 +38,6 @@ build:
               code:
                   make
           - script:
-              name: "make test"
-              code:
-                  make test
-          - script:
               name: "make install"
               code:
                   sudo make install
@@ -49,4 +45,8 @@ build:
               name: "go WERCKER_ROOT"
               code:
                   cd $WERCKER_ROOT
+          - script:
+              name: "version check"
+              code:
+                  ruby --version
           - "bundle-install"
