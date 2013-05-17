@@ -4,16 +4,5 @@ build:
           - script:
               name: "add ruby2.0 support"
               code:
-                  - export RUBYVERSION=2.0.0-p0
-                  - cd $HOME
-                  - mkdir rubyinstall2
-                  - cd rubyinstall2
-                  - wget ftp://ftp.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p0.tar.gz
-                  - tar xzvf ruby-$RUBYVERSION.tar.gz
-                  - cd ruby-$RUBYVERSION
-                  - ./configure --with-readline-dir=/usr/include/readline --with-openssl-dir=/usr/include/openssl
-                  - make
-                  - make test
-                  - sudo make install
-                  - cd $WERCKER_ROOT
+                  - "export RUBYVERSION=2.0.0-p0"
           - "bundle-install"
