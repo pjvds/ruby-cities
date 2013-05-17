@@ -15,8 +15,5 @@ build:
                   make
                   make test
                   sudo make install
-                  cd $HOME
-                  rm -fr rubyinstall2
-                  echo "gem: --no-rdoc --no-ri" >> $HOME/.gemrc
-                  sudo gem install bundler -v "1.3"
+                  cd $WERCKER_ROOT
           - "bundle-install"
