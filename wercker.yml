@@ -2,8 +2,9 @@ box: "wercker/ruby@0.0"
 build:
     steps:
           - script:
-              name: add ruby2.0 support
+              name: "add ruby2.0 support"
               code:
+<<<<<<< HEAD
                   export RUBYVERSION=2.0.0-p0
                   cd $HOME
                   mkdir rubyinstall2
