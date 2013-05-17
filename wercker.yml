@@ -4,5 +4,5 @@ build:
           - script:
               name: "test"
               code:
-                  - "export RUBYVERSION=2.0.0-p0"
+                    "export RUBYVERSION=2.0.0-p0"
           - "bundle-install"
