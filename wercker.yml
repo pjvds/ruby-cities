@@ -2,7 +2,6 @@ box: "wercker/ruby@0.0"
 build:
     steps:
           - script:
-              name: "add ruby2.0 support"
-              code:
-                  - "export RUBYVERSION=2.0.0-p0"
+              name: "test"
+              code: "export RUBYVERSION=2.0.0-p0"
           - "bundle-install"
