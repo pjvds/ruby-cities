@@ -20,5 +20,5 @@ build:
 
         # Add more steps here:
         # - script:
-                name: rspec
-                script: bundle exec rspec
+        #        name: rspec
+        #        script: bundle exec rspec
