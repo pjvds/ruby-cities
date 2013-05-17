@@ -5,5 +5,8 @@ build:
               name: "add ruby2.0 support"
               code:
                   export RUBYVERSION=2.0.0-p0
+          - script:
+              name: "go home"
+              code:
                   cd $HOME
           - "bundle-install"
