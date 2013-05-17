@@ -1,19 +1,24 @@
-box: "wercker/ruby@0.0"
+# Specifies the box, in this case the
+# wercker ruby 2.0 running on ubuntu 12.04
+box: wercker/ubuntu12.04-ruby2.0.0
+
+# Build definition
 build:
+    # The steps that will be executed on build
     steps:
-          - script:
-              name: add ruby2.0 support
-              code: |
-                  export RUBYVERSION=2.0.0-p0
-                  cd $HOME
-                  mkdir rubyinstall2
-                  cd rubyinstall2
-                  wget 'ftp://ftp.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p0.tar.gz'
-                  tar xzvf ruby-$RUBYVERSION.tar.gz
-                  cd ruby-$RUBYVERSION
-                  ./configure --with-readline-dir=/usr/include/readline --with-openssl-dir=/usr/include/openssl
-                  make
-                  sudo make install
-                  cd $WERCKER_ROOT
-                  success "ruby version $(ruby --version) running!"
-          - bundle-install
+        # A step that executes `bundle install` command
+        - bundle-install 
+
+        # A custom script step, name value is used in the UI
+        # and the code value contains the command that get executed
+        - script:
+            name: echo ruby information
+            code: |
+                echo "ruby version $(ruby --version) running!"
+                echo "from location $(which ruby)"
+                echo -p "gem list: $(gem list)"
+
+        # Add more steps here:
+        # - script:
+                name: rspec
+                script: bundle exec rspec
