@@ -25,3 +25,6 @@ build:
         # - script:
         #        name: rspec
         #        script: bundle exec rspec
+        
+        # package the .gem files in the package
+        - bundle-package
