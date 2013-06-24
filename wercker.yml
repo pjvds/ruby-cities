@@ -1,30 +1,23 @@
-# Specifies the box, in this case the
-# wercker ruby 2.0 running on ubuntu 12.04
 box: wercker/ubuntu12.04-ruby2.0.0
-
-# Build definition
+services:
+  - wercker/postgresql
 build:
-    # The steps that will be executed on build
-    steps:
-        # A step that executes `bundle install` command
-        - bundle-install
-
-        - install-packages:
-            packages: libv8-dev
-
-        # A custom script step, name value is used in the UI
-        # and the code value contains the command that get executed
-        - script:
-            name: echo ruby information
-            code: |
-                echo "ruby version $(ruby --version) running!"
-                echo "from location $(which ruby)"
-                echo -p "gem list: $(gem list)"
-
-        # Add more steps here:
-        # - script:
-        #        name: rspec
-        #        script: bundle exec rspec
-        
-        # package the .gem files in the package
-        - bundle-package
+  # The steps that will be executed on build
+  steps:
+    # A step that executes `bundle install` command
+    - bundle-install
+    # A step that prepares the database.yml with settings from the database you defined in services
+    - rails-database-yml:
+        service: postgresql
+    # A custom script step, name value is used in the UI
+    # and the code value contains the command that get executed
+    - script:
+        name: echo ruby information
+        code: |
+            echo "ruby version $(ruby --version) running!"
+            echo "from location $(which ruby)"
+            echo -p "gem list: $(gem list)"      
+    # Add more steps here:
+    # - script:
+    #        name: rspec
+    #        script: bundle exec rspec
