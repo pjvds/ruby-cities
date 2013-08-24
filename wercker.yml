@@ -1,9 +1,13 @@
-box: wercker/ubuntu12.04-ruby2.0.0
+box: wercker/ruby
 services:
   - wercker/postgresql
 build:
   # The steps that will be executed on build
   steps:
+    - script:
+        name: Echo ruby version
+        code: ruby --version
+        
     # A step that executes `bundle install` command
     - bundle-install
     # A step that prepares the database.yml with settings from the database you defined in services
